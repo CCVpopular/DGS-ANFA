@@ -22,7 +22,7 @@ const HomePage = () => {
       case 'nongho':
         return <NongHo />;
       default:
-        return <div>Danh Mục</div>;
+        return <DanhMuc />;
     }
   };
 
