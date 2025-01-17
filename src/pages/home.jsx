@@ -5,6 +5,7 @@ import MuaVu from './muavu';
 import CuaHang from './cuahang';
 import NongHo from './nongho';
 import DanhMuc from './danhmuc';
+import 'boxicons';
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('danhmuc');
@@ -39,28 +40,28 @@ const HomePage = () => {
       >
         <BottomNavigation.Item
           key="danhmuc"
-          label="Danh Mục"
-          icon={<Icon icon="zi-home" />}
+          label={<span className="text-icon-green">Danh Mục</span>}
+          icon={<box-icon name='tag' rotate='90' color='#03ac47' ></box-icon>}
         />
         <BottomNavigation.Item
           key="thietbi"
-          label="Thiết Bị"
-          icon={<Icon icon="zi-devices" />}
+          label={<span className="text-icon-green">Thiết Bị</span>}
+          icon={<box-icon name='slider-alt' rotate='90' color='#03ac47' ></box-icon>}
         />
         <BottomNavigation.Item
           key="muavu"
-          label="Mùa vụ"
-          icon={<Icon icon="zi-calendar" />}
+          label={<span className="text-icon-green">Mùa vụ</span>}
+          icon={<box-icon name='calendar' color='#03ac47' ></box-icon>}
         />
         <BottomNavigation.Item
           key="cuahang"
-          label="Cửa Hàng"
-          icon={<Icon icon="zi-store" />}
+          label={<span className="text-icon-green">Cửa Hàng</span>}
+          icon={<box-icon name='store' color='#03ac47' ></box-icon>}
         />
         <BottomNavigation.Item
           key="nongho"
-          label="Nông Hộ"
-          icon={<Icon icon="zi-user-circle" />}
+          label={<span className="text-icon-green">Nông Hộ</span>}
+          icon={<box-icon name='user' color='#03ac47' ></box-icon>}
         />
       </BottomNavigation>
     </Page>
