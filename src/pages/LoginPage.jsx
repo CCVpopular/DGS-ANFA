@@ -39,7 +39,7 @@ const LoginPage = () => {
         />
       </div>
 
-      {/* Input Email với label */}
+      {/* Input SDT với label */}
       <div className="mb-2 w-80"> {/* Điều chỉnh độ rộng của input */}
         <label className="block text-gray-500 mb-1 font-bold pl-4">Tài khoản</label> {/* Tăng cỡ chữ và thêm font-bold */}
         <InputBox
@@ -85,14 +85,15 @@ const LoginPage = () => {
       </div>
 
       {/* Nút Đăng nhập */}
-      <Button onClick={handleLogin}>Đăng nhập</Button>
+      <Button onClick={handleLogin} className="font-bold">Đăng nhập</Button>
 
       {/* Nút Chuyển đến Đăng ký */}
       <button
         onClick={handleRegisterRedirect}
-        className="text-[#03ac47] mt-4 hover:underline"
+        className="mt-4 hover:underline"
       >
-        Chưa có tài khoản? Đăng ký ngay
+        <span className="text-gray-600">Chưa có tài khoản? </span>
+        <span className="text-[#03ac47]">Đăng ký ngay</span>
       </button>
     </div>
   );
