@@ -12,3 +12,35 @@
 // .zaui-list-item {
 //   cursor: pointer;
 // }
+
+/* Tạo checkbox tùy chỉnh */
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #03ac47; /* Màu viền khi chưa chọn */
+    border-radius: 4px; /* Viền bo góc */
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  /* Khi checkbox được chọn */
+  .checkbox-custom.checked {
+    background-color: #ffffff; /* Màu nền khi checkbox được chọn */
+  }
+  
+  /* Tạo dấu tick bên trong checkbox khi được chọn */
+  .checkbox-custom.checked::after {
+    content: '\2713';  /* Unicode của dấu tick "v" */
+    position: absolute;
+    top: -1px;
+    left: 2px;
+    font-size: 16px;
+    color: #03ac47;  /* Màu của dấu tick */
+  }
+  
+  /* Tạo hiệu ứng hover cho checkbox */
+  .checkbox-custom:hover {
+    border-color: #03ac47;
+  }
+    
