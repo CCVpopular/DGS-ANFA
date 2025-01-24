@@ -14,6 +14,9 @@ import MuaVu from '../pages/muavu';
 import CuaHang from '../pages/cuahang';
 import NongHo from '../pages/nongho';
 import DanhMuc from '../pages/danhmuc';
+import UserProfile from '../pages/userProfile';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
 
 const MyApp = () => {
   return (
@@ -34,6 +37,9 @@ const MyApp = () => {
               <Route path="/cuahang" element={<CuaHang />} />
               <Route path="/nongho" element={<NongHo />} />
               <Route path="/danhmuc" element={<DanhMuc />} />
+              <Route path="/user-profile" element={<UserProfile />} />
+              <Route path="/login" element={<LoginPage />} /> 
+              <Route path="/register" element={<RegisterPage />} /> 
             </AnimationRoutes>
           </ZMPRouter>
         </SnackbarProvider>
