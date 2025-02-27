@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
-// Replace with your own API key from OpenWeatherMap or any other weather API service
-
 const WeatherForm = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Function to fetch weather data based on latitude and longitude
   const fetchWeather = async (latitude, longitude) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=API-KEY-O-DAY&units=metric`);
+      const response = await fetch(
+        `${process.env.WEATHER_API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.WEATHER_API_KEY}&units=metric`
+      );
       
       if (!response.ok) {
-        throw new Error('Failed to fetch weather data');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
   
       const data = await response.json();
       setWeatherData(data);
       setError('');  // Clear any previous error messages
     } catch (err) {
-      console.error(err); // Log the error for debugging purposes
+      console.error('Error details:', err); // Log the error for debugging purposes
   
-      // Show an appropriate error message
-      setError('Không thể kết nối đến máy chủ thời tiết. Vui lòng thử lại sau.');
+      if (err.message.includes('Failed to fetch')) {
+        setError('Vui lòng kiểm tra kết nối mạng của bạn và thử lại.');
+      } else {
+        setError('Không thể kết nối đến máy chủ thời tiết. Vui lòng thử lại sau.');
+      }
   
       setWeatherData(null);  // Reset the weather data in case of error
     } finally {
       setLoading(false);
     }
   };
-  
-  
-  
 
-  // Function to get the user's current location using Geolocation API
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -69,7 +67,7 @@ const WeatherForm = () => {
           <p><strong>Nhiệt độ:</strong> {weatherData.main.temp}°C</p>
           <p><strong>Độ ẩm:</strong> {weatherData.main.humidity}%</p>
           <p><strong>Điều kiện thời tiết:</strong> {weatherData.weather[0].description}</p>
-          <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
+          <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
         </div>
       )}
     </div>
