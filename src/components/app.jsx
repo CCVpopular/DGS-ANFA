@@ -16,6 +16,8 @@ import NongHo from '../pages/nongho';
 import DanhMuc from '../pages/danhmuc';
 import Login from '../pages/login';
 import HomeAdmin from '../pages/admin/home-admin';
+import UserProfile from '../pages/userProfile';
+
 
 const MyApp = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -74,6 +76,7 @@ const MyApp = () => {
                   <Route path="/cuahang" element={<CuaHang />} />
                   <Route path="/nongho" element={<NongHo />} />
                   <Route path="/danhmuc" element={<DanhMuc />} />
+                  <Route path="/user-profile" element={<UserProfile />} />
                 </>
               )}
             </AnimationRoutes>
