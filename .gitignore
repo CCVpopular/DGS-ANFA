@@ -15,6 +15,7 @@ pids
 # Dependency directories
 node_modules/
 
+.env.development
 # Optional npm cache directory
 .npm
 
