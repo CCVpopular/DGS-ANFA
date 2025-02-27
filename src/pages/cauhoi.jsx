@@ -14,7 +14,7 @@ const CauHoi = ({ onConfirm }) => {
   return (
     <div>
       <h1>Câu Hỏi</h1>
-      <textarea value={content} onChange={handleChange} placeholder="Nhập nội dung câu hỏi..." />
+      <textarea value={content} onChange={handleChange} placeholder="Nhập nội dung câu hỏi...." />
       <button onClick={handleSubmit}>Xác nhận</button>
     </div>
   );
