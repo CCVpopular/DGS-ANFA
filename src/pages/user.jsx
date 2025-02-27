@@ -55,6 +55,17 @@ const UserPage = () => {
             <List.Item title="Name" subTitle={user.name} />
             <List.Item title="Display Name" subTitle={displayName} />
             <List.Item title="ID" subTitle={user.id} />
+            {user.idByOA && <List.Item title="OA ID" subTitle={user.idByOA} />}
+            <List.Item 
+              title="OA Status" 
+              subTitle={user.followedOA ? "Following" : "Not Following"} 
+            />
+            {user.isSensitive && (
+              <List.Item 
+                title="Special Account" 
+                subTitle="This account requires special handling" 
+              />
+            )}
           </List>
         </div>
       </Box>
