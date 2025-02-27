@@ -1,12 +1,12 @@
 import React from 'react';
 import { Page } from 'zmp-ui';
 
-const NongHo = () => {
+const NongHo = ({ cauHoiContent }) => {
   return (
     <Page className="page">
       <div className="section-container">
         <h1>Nông Hộ</h1>
-        <p>Nội dung trang nông hộ sẽ được hiển thị ở đây</p>
+        <p>{cauHoiContent}</p>
       </div>
     </Page>
   );
