@@ -40,7 +40,37 @@
   }
   
   /* Tạo hiệu ứng hover cho checkbox */
-  .checkbox-custom:hover {
-    border-color: #03ac47;
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 2rem;
   }
-    
+  
+  .p-2 {
+    padding: 2rem;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .button-left {
+    margin-right: auto;
+    width: 100px; /* Điều chỉnh kích thước chiều rộng */
+    height: 40px; /* Điều chỉnh kích thước chiều cao */
+    padding: 5px; /* Thêm padding để nút nhỏ gọn hơn */
+    font-size: 14px; /* Điều chỉnh kích thước chữ */
+  }
+  
+  .button-right {
+    margin-left: auto;
+    width: 100px; /* Điều chỉnh kích thước chiều rộng */
+    height: 40px; /* Điều chỉnh kích thước chiều cao */
+    padding: 5px; /* Thêm padding để nút nhỏ gọn hơn */
+    font-size: 14px; /* Điều chỉnh kích thước chữ */
+  }
