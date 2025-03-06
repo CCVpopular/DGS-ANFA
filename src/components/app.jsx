@@ -30,13 +30,10 @@ const MyApp = () => {
   const checkUser = async () => {
     try {
       const userID = await getUserID({});
-      console.log({userID});
       const response = await fetch(`${import.meta.env.VITE_ZALO_MINIAPP_API_URL}/users/check/${userID}`);
       const data = await response.json();
-      console.log(response);
       setIsAuthenticated(data.exists);
       setUserRole(data.role);
-      console.log('API Response:', data); 
     } catch (error) {
       console.error('Error checking user:', error);
       setIsAuthenticated(false);
