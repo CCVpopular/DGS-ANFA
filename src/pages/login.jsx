@@ -5,7 +5,8 @@ import { Page, Box, Text, Button } from 'zmp-ui';
 
 const Login = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
-  const secretKey = import.meta.env.ZALO_MINIAPP_SECRET_KEY;
+  const secretKey = import.meta.env.VITE_ZALO_MINIAPP_SECRET_KEY;
+  console.log(secretKey);
 
   const checkPermissions = () => {
     return new Promise((resolve, reject) => {
@@ -71,38 +72,45 @@ const Login = ({ setIsAuthenticated }) => {
 
   const handleGetUserInfo = async () => {
     try {
+      await requestPermissions();
       let permissions = await checkPermissions();
-      
-      if (!permissions['scope.userInfo'] || !permissions['scope.userPhonenumber']) {
-        await requestPermissions();
-        permissions = await checkPermissions();
-      }
 
       if (permissions['scope.userInfo'] && permissions['scope.userPhonenumber']) {
         const { userInfo } = await getUserInfo({});
+        console.log(userInfo);
         const accessToken = await getAccessToken({});
+        console.log(accessToken);
         const phoneToken = await getPhoneNumberToken();
+        console.log(phoneToken);
         const phoneData = await fetchPhoneNumber(accessToken, phoneToken);
-        console.log(phoneData.data.number);
-        const response = await fetch(`${import.meta.env.ZALO_MINIAPP_API_URL}/users/register`, {
+
+        // Check if phone number exists and is valid
+        if (!phoneData.data.number || phoneData.data.number.trim() === '') {
+          console.error('Không thể lấy số điện thoại');
+          return;
+        }
+
+        const requestBody = {
+          id: userInfo.id,
+          idByOA: userInfo.idByOA,
+          followedOA: userInfo.followedOA,
+          name: userInfo.name,
+          avatar: userInfo.avatar,
+          isSensitive: userInfo.isSensitive,
+          phoneNumber: phoneData.data.number
+        };
+
+        console.log('Request body:', requestBody);
+        const response = await fetch(`${import.meta.env.VITE_ZALO_MINIAPP_API_URL}/users/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            id: userInfo.id,
-            idByOA: userInfo.idByOA,
-            followedOA: userInfo.followedOA,
-            name: userInfo.name,
-            avatar: userInfo.avatar,
-            isSensitive: userInfo.isSensitive,
-            phoneNumber: phoneData.data.number
-          }),
+          body: JSON.stringify(requestBody),
         });
-
         if (response.ok) {
-          setIsAuthenticated(true);  // Add this line before navigation
-          navigate('/');  // This line is already correct
+          setIsAuthenticated(true);  
+          navigate('/', { replace: true });
         }
       }
     } catch (error) {
