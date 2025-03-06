@@ -6,7 +6,6 @@ import { Page, Box, Text, Button } from 'zmp-ui';
 const Login = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
   const secretKey = import.meta.env.VITE_ZALO_MINIAPP_SECRET_KEY;
-  console.log(secretKey);
 
   const checkPermissions = () => {
     return new Promise((resolve, reject) => {
@@ -62,7 +61,6 @@ const Login = ({ setIsAuthenticated }) => {
         }
       });
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       console.error('Error fetching phone number:', error);
@@ -77,11 +75,8 @@ const Login = ({ setIsAuthenticated }) => {
 
       if (permissions['scope.userInfo'] && permissions['scope.userPhonenumber']) {
         const { userInfo } = await getUserInfo({});
-        console.log(userInfo);
         const accessToken = await getAccessToken({});
-        console.log(accessToken);
         const phoneToken = await getPhoneNumberToken();
-        console.log(phoneToken);
         const phoneData = await fetchPhoneNumber(accessToken, phoneToken);
 
         // Check if phone number exists and is valid
@@ -100,7 +95,6 @@ const Login = ({ setIsAuthenticated }) => {
           phoneNumber: phoneData.data.number
         };
 
-        console.log('Request body:', requestBody);
         const response = await fetch(`${import.meta.env.VITE_ZALO_MINIAPP_API_URL}/users/register`, {
           method: 'POST',
           headers: {
